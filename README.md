@@ -1,29 +1,36 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+My first app to get to know Ruby and Ruby on Rails.
 
 ## Core features 
-User Accounts: Securely create accounts, log in, and log out of the app.
-Create Meetups: Users can organize new meetups, providing titles, descriptions, locations, and date/time information.
-Meetup Discovery: Browse a list of upcoming meetups with easy-to-view details.
-Join and Leave Meetups: Register for the meetups that interest you, and easily deregister if your plans change.
-Things you may want to cover:
+* User Accounts: create accounts, log in, and log out of the app 
 
-* Ruby version
+* Create Meetups: Organizers can organize new meetups, providing titles, descriptions, locations, and date/time information.
 
-* System dependencies
+* Edit/ Cancel Meetups: Organizers have possibility to edit or cancel meetups and view registered participants.
 
-* Configuration
+* Join and Leave Meetups: Participant may register for the meetups and easily deregister.
 
-* Database creation
+* Both participants and organizers can use "My meetups" section to:
+   * Participants - see meetups they are registered for
+   * Organizers - Meetups they are organizing
 
-* Database initialization
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+# MeetUps!
+My first app to get to know Ruby and Ruby on Rails.
 
-* ...
+## Core features
+* User Accounts: Create accounts, log in, and log out of the app.
+
+* Create Meetups: Organizers can organize new meetups, providing titles, descriptions, locations, and date/time information.
+
+* Edit/Cancel Meetups: Organizers have the possibility to edit or cancel meetups and view registered participants.
+
+* Join and Leave Meetups: Participants may register for the meetups and easily deregister.
+
+* Both participants and organizers can use the "My meetups" section to:
+
+   * Participants – see meetups they are registered for.
+   * Organizers – see meetups they are organizing.
