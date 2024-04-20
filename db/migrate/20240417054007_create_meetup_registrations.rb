@@ -7,6 +7,6 @@ class CreateMeetupRegistrations < ActiveRecord::Migration[7.1]
       t.timestamps
     end
     
-    add_index :registrations, [:user_id, :meetup_id], unique: true
+    add_index :meetup_registrations, [:user_id, :meetup_id], unique: true
   end
 end
