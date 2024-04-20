@@ -1,29 +1,23 @@
 class RegistrationsController < ApplicationController
-    def new_user
+
+    def new
         @user = User.new
     end
 
-    def create_user
+    def create
         @user=User.new(user_params)
         if @user.save
             session[:user_id] = @user.id
-            redirect_to root_path, notice: "Successfully created accout "
+            redirect_to root_path, notice: "Successfully created account. "
         else
-            render :new_user
+            render :new
         end
     end
-
-    def new_organizer
-        @user = Organizer.new
-    end
-
-    def create_organizer
-        render plain:"thanks"
-    end
+    
     private
 
     def user_params
-        params.require(:user).permit(:email, :password, :password_confirmation)
+        params.require(:user).permit(:email, :name, :role, :password, :password_confirmation)
     end
     
 end
