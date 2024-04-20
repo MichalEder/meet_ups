@@ -1,0 +1,54 @@
+<h1>My Meetups</h1>
+
+<% if Current.user&.role == "organizer" %>
+  <%= link_to "Create New Meetup", meetup_path, class: "btn btn-primary mb-3" %>  
+<% end %>
+
+<% if @meetups.any? %>
+  <div class="row"> 
+    <% puts @meetups.inspect %>
+    <% @meetups.each do |meetup| %>
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><%= meetup.title %></h5>
+            <p class="card-text">Location: <%= meetup.location %></p>
+            <div class="d-flex flex-row">
+                <div class="me-3">
+                    <p class="fw-bold">Date: <span class="fw-normal"><%= meetup.datetime.strftime("%d.%m.%Y") %></span> </p>
+                </div>
+        
+                <div class="mx-3">
+                    <p class="fw-bold">Time: <span class="fw-normal"><%= meetup.datetime.strftime("%H:%M %p") %></span></p> 
+                </div>
+            </div>
+        
+            <% if MeetupRegistration.exists?(user_id: Current.user.id, meetup_id: meetup.id) %>
+              <div class="d-flex flex-row">
+                <%= button_to "Deregister", deregister_meetup_path(meetup), method: :delete, class: 'btn btn-danger me-2', data: { confirm: "Are you sure?" } %>
+                <%= button_to "Detail", view_meetup_path(meetup), method: :get, class: 'btn btn-primary' %>
+              </div>
+            <% end %>
+
+            <% if Current.user.id == meetup.organizer_id %> 
+              <div class="d-flex flex-row"> 
+                <%= button_to "Detail", edit_meetup_path(meetup), method: :get, class: 'btn btn-secondary me-2' %>
+                <%= button_to "Cancel meetup", cancel_meetup_path(meetup), method: :delete, class: 'btn btn-danger ' %>
+              </div>
+            <% end %>
+          </div> 
+        </div> 
+      </div> 
+    <% end %>
+  </div> 
+<% else %>
+  <p>No registered or meetups yet.</p>
+<% end %> 
+
+
+                
+            
+
+
+
+
