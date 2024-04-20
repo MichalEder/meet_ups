@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-3">
+
+      <h1>Create new meetup!</h1>
+
+      <%= form_with model: @meetup, url: meetup_path, data: { turbo: "false" } do |form| %>
+        <%= form.hidden_field :organizer_id, value: Current.user.id  %>
+
+
+          <% if @meetup.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@meetup.errors.count, "error") %> prohibited this meetup from being saved:</h2>
+              <ul>
+                <% @meetup.errors.each do |error| %>
+                  <li><%= error.full_message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+        
+          <div class="form-group mb-3">
+            <%= form.label :title, class: "form-label" %>
+            <%= form.text_field :title, class: "form-control" %>
+          </div>
+        
+          <div class="form-group mb-3">
+            <%= form.label :description, class: "form-label" %>
+            <%= form.text_area :description, class: "form-control" %>
+          </div>
+        
+          <div class="form-group mb-3">
+            <%= form.label :location, class: "form-label" %>
+            <%= form.text_field :location, class: "form-control" %>
+          </div>
+        
+          <div class="form-group mb-3">
+            <%= form.label :datetime, class: "form-label" %>
+            <%= form.datetime_select :datetime, class: "form-control" %>
+          </div>
+
+          <div class="form-group mb-3">
+            <%= form.submit "Create Meetup", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+    </div>
+  </div>
+</div>

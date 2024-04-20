@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2"> 
+
+      <h1 class="mb-3"><%= @meetup.title %></h1>
+        <div class="mb-3">
+            <p class="fw-bold">Organizer: <span class="fw-normal"><%= @meetup.organizer.name %></span> </p>
+        </div>
+        
+        <div class="mb-2">
+            <p class="fw-bold">Organizer contact: <span class="fw-normal"><%= @meetup.organizer.email %></span></p> 
+        </div>
+
+      <div class="row mb-3"> 
+        <div class="col">
+          <p class="fw-bold">Location:</p> 
+          <p><%= @meetup.location %></p> 
+        </div>
+        <div class="col"> 
+          <p class="fw-bold">Date:</p> 
+          <p><%= @meetup.datetime.strftime("%d.%m.%Y") %></p> 
+        </div>
+        <div class="col"> 
+          <p class="fw-bold">Time:</p> 
+          <p><%= @meetup.datetime.strftime("%H:%M %p") %></p> 
+        </div>
+      </div>
+
+        <div class="mb-2">
+            <p class="fw-bold">Description:</p> 
+            <p><%= @meetup.description %></p> 
+        </div>
+
+      <% if Current.user == @meetup.organizer %>
+        <div class="mb-3">
+            <%= button_to 'Edit', edit_meetup_path(@meetup), class: 'btn btn-primary',  method: :get %>
+        </div>    
+        <div class="mb-3">
+            <h3>Participants</h3>
+
+            <% if @meetup.participants.any? %>
+                <ul class="list-group">
+                    <% @meetup.participants.each do |participant| %>
+                        <li class="list-group-item"><%= participant.email %></li> 
+                    <% end %>
+                </ul>
+        
+            <% else %>
+                <p>No participants yet.</p>
+            <% end %>
+        </div>                       
+        <% else %>  
+        <% if Current.user.role == "participant" %>
+          <% if MeetupRegistration.exists?(user_id: Current.user.id, meetup_id: @meetup.id) %>
+            <%= button_to "Deregister", deregister_meetup_path(@meetup), method: :delete, class: 'btn btn-danger', data: { turbo: "false" } %>
+          <% else %> 
+            <%= button_to "Register", meetup_registration_path(@meetup), data: { turbo: "false" }, method: :post, class: 'btn btn-success' %>
+         <% end %>
+       <% end %>
+     <% end %>
+  </div>
+</div>  
