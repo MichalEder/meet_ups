@@ -1,23 +1,3 @@
-# README
-
-My first app to get to know Ruby and Ruby on Rails.
-
-## Core features 
-* User Accounts: create accounts, log in, and log out of the app 
-
-* Create Meetups: Organizers can organize new meetups, providing titles, descriptions, locations, and date/time information.
-
-* Edit/ Cancel Meetups: Organizers have possibility to edit or cancel meetups and view registered participants.
-
-* Join and Leave Meetups: Participant may register for the meetups and easily deregister.
-
-* Both participants and organizers can use "My meetups" section to:
-   * Participants - see meetups they are registered for
-   * Organizers - Meetups they are organizing
-
-
-
-
 # MeetUps!
 My first app to get to know Ruby and Ruby on Rails.
 
