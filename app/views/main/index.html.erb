@@ -1,8 +1,32 @@
 <div class="d-flex align-items-center justify-content-center">
     <h1>Welcome to our MeetUps</h1>
-
-    <% if @user %>
-        Logged in as:<%= @user.email %>
-    <% end %>    
-
+</div>
+<div class="d-flex align-items-center justify-content-center">
+    <p> Here you can find some interesting meetups! </p>
+</div>   
+    <% @meetups.each do |meetup| %>
+            <div>
+                <div class="d-flex align-items-center justify-content-center">
+                    <h2><%= link_to meetup.title,view_meetup_path(meetup.id) %></h2>
+                </div>
+                <div class="d-flex align-items-center justify-content-center">
+                    <p class="fw-bold">Organized by: <span class="fw-normal"><%= meetup.organizer.name %></span></p>
+                </div>
+                <div class="d-flex align-items-center justify-content-center">    
+                    <p class="fw-bold">Location: <span class="fw-normal"><%= meetup.location %></span></p>
+                </div>
+                <div class="d-flex align-items-center justify-content-center">    
+                    <div class="row mb-3"> 
+                        <div class="col"> 
+                            <p class="fw-bold">Date:</p> 
+                            <p><%= meetup.datetime.strftime("%d.%m.%Y") %></p> 
+                        </div>
+                        <div class="col"> 
+                            <p class="fw-bold">Time:</p> 
+                            <p><%= meetup.datetime.strftime("%H:%M %p") %></p> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <% end %>
 </div>
