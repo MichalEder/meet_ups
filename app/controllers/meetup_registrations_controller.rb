@@ -1,7 +1,10 @@
 class MeetupRegistrationsController < ApplicationController
     
+    # Handles creation of new meetup registrations
     def create
         @meetup = Meetup.find(params[:meetup_id])
+
+        # Create a new registration object, associating it with the current user
         @meetup_registration = MeetupRegistration.new(meetup_registration_params)
         
       
@@ -12,8 +15,11 @@ class MeetupRegistrationsController < ApplicationController
         end
     end
 
+    # Handles the deletion of existing meetup registrations
     def destroy
       @meetup = Meetup.find(params[:meetup_id])
+
+      # Find the registration that matches the current user and meetup
       @registration = MeetupRegistration.find_by(meetup_deregistration_params) 
   
       if @registration.destroy
@@ -25,10 +31,14 @@ class MeetupRegistrationsController < ApplicationController
 
   private
 
+  # Defines permitted parameters for creating a meetup registration.
+  # Ensures user_id is taken from the current user for security
   def meetup_registration_params
     { user_id: Current.user.id, meetup_id: params[:meetup_id] }
   end
 
+  # Defines permitted parameters for finding a registration to deregister.
+  # Ensures user_id is taken from the current user for security.
   def meetup_deregistration_params
     { user_id: Current.user.id, meetup_id: params[:meetup_id] }
   end
